@@ -210,8 +210,6 @@ dnd-loot-generator/
 
 **Grand total: 29 tables with 700+ rows of data**
 
-> 📝 Every single row of every table is documented in [DEVELOPMENT.md](./DEVELOPMENT.md)
-
 ---
 
 ## 🛠️ Tech Stack
