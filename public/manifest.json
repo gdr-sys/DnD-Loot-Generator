@@ -1,0 +1,10 @@
+{
+  "name": "D&D Loot Generator",
+  "short_name": "Loot Gen",
+  "description": "Generate treasure for your D&D campaigns",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0d1a",
+  "theme_color": "#0d0d1a",
+  "icons": []
+}
