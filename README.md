@@ -1,410 +1,321 @@
-\# 🎲 D\&D Loot Generator v1.0.5
+<p align="center">
+  <img src="https://img.shields.io/badge/version-1.0.5-blue?style=for-the-badge" alt="Version" />
+  <img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React" />
+  <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind" />
+  <img src="https://img.shields.io/badge/Vite-7-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+  <img src="https://img.shields.io/badge/PWA-ready-5A0FC8?style=for-the-badge&logo=pwa&logoColor=white" alt="PWA" />
+  <img src="https://img.shields.io/badge/license-MIT-green?style=for-the-badge" alt="License" />
+</p>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/D%26D-5e%20%2F%202024-E40712?style=for-the-badge&logo=dungeonsanddragons&logoColor=white" alt="D&D" />
+  <img src="https://img.shields.io/badge/lang-EN%20%7C%20IT-yellow?style=for-the-badge" alt="Languages" />
+  <img src="https://img.shields.io/badge/magic_items-400%2B-purple?style=for-the-badge" alt="Items" />
+  <img src="https://img.shields.io/badge/tables-29-orange?style=for-the-badge" alt="Tables" />
+  <img src="https://img.shields.io/badge/build-~460KB_single_file-success?style=for-the-badge" alt="Build" />
+</p>
 
+---
 
-\*\*Generatore di Tesori per Dungeons \& Dragons\*\* — Un tool web per Dungeon Master per generare rapidamente tesori casuali seguendo le tabelle ufficiali del DMG 2014 e DMG 2024.
+<h1 align="center">🎲 D&D Loot Generator</h1>
 
+<p align="center">
+  <strong>Treasure Generator for Dungeons & Dragons</strong><br/>
+  A web tool for Dungeon Masters to quickly generate random treasure<br/>
+  following the official tables from the <b>DMG 2014</b> and <b>DMG 2024</b>.
+</p>
 
+<p align="center">
+  🌐 <b>Bilingual</b>: English 🇬🇧 &amp; Italian 🇮🇹
+</p>
 
-🌐 \*\*Bilingue\*\*: Inglese 🇬🇧 e Italiano 🇮🇹
+<p align="center">
+  <a href="https://ko-fi.com/noemimarcolini"><img src="https://img.shields.io/badge/Ko--fi-Support_the_creator-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white" alt="Ko-fi" /></a>
+  <a href="https://gdr-sys-portfolio2026.vercel.app/"><img src="https://img.shields.io/badge/Portfolio-More_GDR_Tools-4F46E5?style=for-the-badge&logo=vercel&logoColor=white" alt="Portfolio" /></a>
+</p>
 
+---
 
+## ✨ Features
 
-\---
+### 📚 Two Editions Supported
+| Edition | Source | Content |
+|---------|--------|---------|
+| **DMG 2014** | Ch. 7, p. 136–149 | Individual Treasure + Treasure Hoard + Tables A–I + Subtables |
+| **DMG 2024** | Ch. 6–7, p. 120 + 326–330 | Individual + Hoard + 4 Themes × 5 Rarities (20 tables) |
 
+### 🎯 Three Generation Modes
+| Mode | Description | Editions |
+|------|-------------|----------|
+| 👤 **Individual Treasure** | Loot from a single monster/NPC | 2014, 2024 |
+| 💰 **Treasure Hoard** | Full dungeon/lair hoard (coins + gems + art + magic items) | 2014, 2024 |
+| ✨ **Magic Item by Theme** | Generate a single magic item by theme and rarity | 2024 only |
 
+### 💎 Generated Content
+- 🪙 **Coins** — CP, SP, EP, GP, PP with DMG formulas
+- 💎 **Gemstones** — 12 types across 6 value tiers (10–5,000 gp), translated EN/IT
+- 🎨 **Art Objects** — 10 objects across 5 value tiers (25–7,500 gp), translated EN/IT
+- ✨ **Magic Items** — 400+ items with name, description, and rarity in EN/IT
+- 📊 **Auto-calculated totals** for gems and art objects value
 
-\## ✨ Funzionalità
+### 🎨 Interface
+- 🌙 **Dark / ☀️ Light / 💻 System** theme with persistence
+- 📱 **Mobile-first** responsive — touch targets ≥56px, font ≥16px
+- 📜 **Bottom sheet** for magic item details with full translation
+- 🕐 **History** of last 50 rolls (localStorage)
+- 📋 **Copy** to clipboard + 📤 **Share** (Web Share API)
+- ♿ Respects `prefers-reduced-motion` for accessibility
 
+### 🌍 Full Localization
+| Element | EN 🇬🇧 | IT 🇮🇹 |
+|---------|--------|--------|
+| UI interface | ✅ | ✅ |
+| Magic items (name + description) | ✅ | ✅ |
+| Gemstones | ✅ | ✅ |
+| Art objects | ✅ | ✅ |
+| Coin names | GP, SP, CP, EP, PP | MO, MA, MR, ME, MP |
 
+---
 
-\### 📚 Due Edizioni Supportate
+## 🚀 Quick Start
 
-\- \*\*DMG 2014\*\* — Tabelle classiche Individual Treasure e Treasure Hoard (Tables A–I)
+### Online
+Open the app in your browser → select edition → press 🎲
 
-\- \*\*DMG 2024\*\* — Nuovo sistema a 4 Temi × 5 Rarità (Arcana, Armaments, Implements, Relics)
-
-
-
-\### 🎯 Tre Modalità di Generazione
-
-\- \*\*Individual Treasure\*\* — Tesoro per singolo mostro/PNG
-
-\- \*\*Treasure Hoard\*\* — Tesoro completo di un dungeon/tana (monete + gemme + arte + oggetti magici)
-
-\- \*\*Magic Item by Theme\*\* \*(solo 2024)\* — Genera un singolo oggetto magico scegliendo tema e rarità
-
-
-
-\### 💎 Contenuto Generato
-
-\- \*\*Monete\*\*: CP, SP, EP, GP, PP con quantità casuali secondo le formule del DMG
-
-\- \*\*Gemme\*\*: 12 tipi per 6 fasce di valore (10–5.000 gp), tradotte EN/IT
-
-\- \*\*Oggetti d'Arte\*\*: 10 oggetti per 5 fasce di valore (25–7.500 gp), tradotti EN/IT
-
-\- \*\*Oggetti Magici\*\*: 400+ oggetti con nome, descrizione e rarità in EN/IT
-
-
-
-\### 🎨 Interfaccia
-
-\- \*\*Dark/Light/System\*\* theme
-
-\- \*\*Bottom sheet\*\* per dettagli oggetti magici
-
-\- \*\*Cronologia\*\* degli ultimi 50 roll (salvati in localStorage)
-
-\- \*\*Copia\*\* negli appunti e \*\*Condividi\*\* (Web Share API)
-
-\- \*\*Totale valore\*\* per gemme e oggetti d'arte
-
-\- \*\*Mobile-first\*\* responsive, touch targets ≥56px, font ≥16px
-
-\- \*\*PWA\*\* installabile, funziona offline dopo il primo caricamento
-
-
-
-\### 🌍 Localizzazione
-
-\- Interfaccia completa in Inglese e Italiano
-
-\- Tutti gli oggetti magici tradotti (nome + descrizione)
-
-\- Gemme e oggetti d'arte tradotti
-
-\- Nomi monete localizzati (GP→MO, SP→MA, ecc.)
-
-
-
-\---
-
-
-
-\## 🚀 Come Usare
-
-
-
-\### Online
-
-Apri l'app nel browser. Funziona su desktop e mobile.
-
-
-
-\### Sviluppo Locale
-
+### Local Development
 ```bash
+# Clone
+git clone <repo-url>
+cd dnd-loot-generator
 
-\# Installa dipendenze
-
+# Install dependencies
 npm install
 
-
-
-\# Avvia dev server
-
+# Dev server (hot reload)
 npm run dev
 
-
-
-\# Build produzione (genera dist/index.html singolo file)
-
+# Production build → dist/index.html (single file ~460KB)
 npm run build
 
-
-
-\# Preview build
-
+# Preview production build
 npm run preview
-
 ```
 
+---
 
+## 📖 How It Works
 
-\---
-
-
-
-\## 📖 Come Funziona
-
-
-
-\### DMG 2014
-
-1\. Scegli la fascia CR (0–4, 5–10, 11–16, 17+)
-
-2\. Scegli il tipo (Individual o Hoard)
-
-3\. Premi "🎲 Tira il Tesoro"
-
-4\. Per \*\*Individual\*\*: tira d100 → trova riga → genera monete
-
-5\. Per \*\*Hoard\*\*: genera monete base → tira d100 → gemme/arte/oggetti → tira sulle Magic Item Tables A–I
-
-
-
-\### DMG 2024
-
-1\. Scegli la fascia CR
-
-2\. Scegli il tipo (Individual, Hoard, o Magic Item by Theme)
-
-3\. Per \*\*Individual\*\*: formula diretta senza d100
-
-4\. Per \*\*Hoard\*\*: genera GP → tira numero oggetti → per ognuno: 1d2 rarità + 1d4 tema + d100
-
-5\. Per \*\*Magic Item by Theme\*\*: scegli tema e rarità → tira d100
-
-
-
-\---
-
-
-
-\## 🗂️ Struttura Progetto
-
-
-
+### DMG 2014
+```
+Select CR → Select Type → 🎲 Roll
+                              │
+              ┌───────────────┼───────────────┐
+              ▼               ▼               ▼
+         Individual      Hoard Base       Hoard d100
+          (d100)          Coins            Roll
+              │               │               │
+              ▼               ▼               ▼
+           Coins           Coins       Gems/Art/Magic
+                                      Items (Tables A–I)
+                                            │
+                                      ┌─────┼─────┐
+                                      ▼     ▼     ▼
+                                   Figurine  Magic  Normal
+                                   Sub(d8)  Armor   Item
+                                           Sub(d12)
 ```
 
-├── src/
+### DMG 2024
+```
+Select CR → Select Type → 🎲 Roll
+                              │
+              ┌───────────────┼───────────────┐
+              ▼               ▼               ▼
+         Individual        Hoard         Magic Item
+       (direct formula)     │            by Theme
+              │             ▼               │
+              ▼           GP base      ┌────┼────┐
+           Coins          + N items    ▼    ▼    ▼
+                              │      Theme Rarity d100
+                     For each item:      │
+                     1d2 rarity          ▼
+                     1d4 theme        Item
+                     d100 table
+```
 
-│   ├── App.tsx                          # Componente principale (UI + state)
+---
 
-│   ├── main.tsx                         # Entry point React
+## 🗂️ Project Structure
 
-│   ├── index.css                        # Stili globali + animazioni
-
-│   ├── core/
-
-│   │   ├── dice.ts                      # Funzioni dadi (rollDie, rollDice, pick...)
-
-│   │   ├── generator2014.ts             # Logica generazione DMG 2014
-
-│   │   └── generator2024.ts             # Logica generazione DMG 2024
-
-│   ├── data/
-
-│   │   ├── tables2014.ts               # Tabelle ufficiali DMG 2014
-
-│   │   ├── tables2024.ts               # Tabelle ufficiali DMG 2024 (20 tabelle)
-
-│   │   └── magic-items-database.ts     # Database 400+ oggetti magici EN/IT
-
-│   └── i18n/
-
-│       ├── translations.ts             # Traduzioni UI (EN/IT)
-
-│       └── translations-items.ts       # Traduzioni gemme e oggetti d'arte
-
-├── public/
-
+```
+dnd-loot-generator/
+│
+├── 📄 index.html                        # HTML entry point + PWA meta tags
+├── 📄 README.md                         # ← This file
+├── 📄 DEVELOPMENT.md                    # Technical guide + ALL official tables
+├── 📄 package.json
+├── 📄 vite.config.ts
+├── 📄 tsconfig.json
+│
+├── 📁 public/
 │   └── manifest.json                   # PWA manifest
-
-├── index.html                          # HTML entry point
-
-├── DEVELOPMENT.md                      # Guida tecnica dettagliata + tabelle complete
-
-└── README.md                           # Questo file
-
+│
+└── 📁 src/
+    ├── App.tsx                          # 🎯 Main component (UI + state + routing)
+    ├── main.tsx                         # React entry point
+    ├── index.css                        # Global styles + CSS animations
+    │
+    ├── 📁 core/                         # 🎲 Game engine
+    │   ├── dice.ts                      # rollDie, rollDice, rollPercent, pick
+    │   ├── generator2014.ts             # DMG 2014 generation logic
+    │   └── generator2024.ts             # DMG 2024 generation logic
+    │
+    ├── 📁 data/                         # 📊 Data & tables
+    │   ├── tables2014.ts               # Official DMG 2014 tables (Individual + Hoard + A–I)
+    │   ├── tables2024.ts               # Official DMG 2024 tables (20 theme×rarity tables)
+    │   └── magic-items-database.ts     # 400+ magic items database EN/IT + fuzzy lookup
+    │
+    └── 📁 i18n/                         # 🌍 Internationalization
+        ├── translations.ts             # UI translations (EN/IT)
+        └── translations-items.ts       # Gem & art object translations (EN/IT)
 ```
 
+---
+
+## 📊 Implemented Tables
+
+### DMG 2014 — 9 Tables
+| # | Table | Source | Entries |
+|---|-------|--------|---------|
+| 1 | Individual Treasure CR 0–4 | p. 136 | 5 rows |
+| 2 | Individual Treasure CR 5–10 | p. 136 | 5 rows |
+| 3 | Individual Treasure CR 11–16 | p. 136 | 4 rows |
+| 4 | Individual Treasure CR 17+ | p. 136 | 3 rows |
+| 5 | Treasure Hoard CR 0–4 | p. 137 | 17 rows |
+| 6 | Treasure Hoard CR 5–10 | p. 137 | 29 rows |
+| 7 | Treasure Hoard CR 11–16 | p. 138 | 33 rows |
+| 8 | Treasure Hoard CR 17+ | p. 138 | 25 rows |
+| 9 | Magic Item Tables A–I | p. 144–149 | 454 entries total |
+
+**+ 2 Subtables**: Figurine of Wondrous Power (d8), Magic Armor (d12)
+
+### DMG 2024 — 20 Tables
+| # | Theme | Rarities | Source | Entries |
+|---|-------|----------|--------|---------|
+| 1–5 | Arcana | Common → Legendary | p. 326 | 217 |
+| 6–10 | Armaments | Common → Legendary | p. 328 | 118 |
+| 11–15 | Implements | Common → Legendary | p. 329 | 122 |
+| 16–20 | Relics | Common → Legendary | p. 330 | 85 |
 
+**Grand total: 29 tables with 700+ rows of data**
 
-\---
+> 📝 Every single row of every table is documented in [DEVELOPMENT.md](./DEVELOPMENT.md)
 
+---
 
+## 🛠️ Tech Stack
 
-\## 📊 Tabelle Implementate
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| [React](https://react.dev/) | 18 | UI components + hooks |
+| [TypeScript](https://www.typescriptlang.org/) | 5 | Type safety |
+| [Vite](https://vitejs.dev/) | 7 | Build tool + dev server |
+| [Tailwind CSS](https://tailwindcss.com/) | 4 | Utility-first styling |
+| [vite-plugin-singlefile](https://github.com/nickreese/vite-plugin-singlefile) | — | Bundle everything into one HTML |
 
+**Zero external runtime dependencies.** Output: a single `dist/index.html` (~460KB, ~124KB gzip).
 
+---
 
-\### DMG 2014 (Ch. 7, p. 136–144)
+## 📱 PWA
 
-| Tabella | Fonte |
+The app is installable as a Progressive Web App:
 
-|---------|-------|
+| Feature | Status |
+|---------|--------|
+| `manifest.json` | ✅ |
+| Standalone mode | ✅ |
+| Offline support (single-file) | ✅ |
+| iPhone safe areas | ✅ |
+| Theme color | `#0d0d1a` |
 
-| Individual Treasure (4 fasce CR) | p. 136 |
+---
 
-| Treasure Hoard (4 fasce CR) | p. 137–138 |
+## 💾 Persistence (localStorage)
 
-| Gemstones (6 fasce di valore) | p. 134 |
+| Key | Value | Default |
+|-----|-------|---------|
+| `lang` | `"en"` \| `"it"` | `"en"` |
+| `themeMode` | `"dark"` \| `"light"` \| `"system"` | `"dark"` |
+| `rollHistory` | JSON array (max 50 entries) | `[]` |
 
-| Art Objects (5 fasce di valore) | p. 134–135 |
+---
 
-| Magic Item Tables A–I | p. 144–149 |
+## 📋 Changelog
 
-| Figurine Subtable (d8) | p. 144 |
+### v1.0.5 *(Current)*
+- ✅ All 29 official tables implemented and verified
+- ✅ 400+ magic items with full EN/IT translations
+- ✅ CR grouped by tier (0–4, 5–10, 11–16, 17+) as per DMG
+- ✅ Auto-calculated value totals for gems and art objects
+- ✅ Dark/Light/System theme
+- ✅ Fuzzy lookup for items (case-insensitive, name normalization)
+- ✅ Ko-fi and Portfolio links in welcome screen
+- ✅ Flag icons 🇬🇧🇮🇹 next to language toggle
+- ✅ Complete DEVELOPMENT.md with all official tables row by row
+- ✅ Professional README.md
 
-| Magic Armor Subtable (d12) | p. 144 |
+### v1.0.0
+- Initial release with DMG 2014 and DMG 2024 support
 
+---
 
+## 🤝 Contributing
 
-\### DMG 2024 (Ch. 6–7, p. 120 + 326–330)
+1. 📖 Read **[DEVELOPMENT.md](./DEVELOPMENT.md)** to understand the architecture and tables
+2. 🔧 To add a **magic item**: edit `src/data/magic-items-database.ts`
+3. 🌍 To add a **language**: edit the files in `src/i18n/`
+4. 📊 To fix a **table**: edit `src/data/tables2014.ts` or `tables2024.ts`
 
-| Tabella | Fonte |
+### Adding a Magic Item
+```typescript
+// In src/data/magic-items-database.ts
+'Exact Name As In Table': {
+  nameEN: 'English Name',
+  nameIT: 'Italian Name',
+  descEN: 'English description of the item...',
+  descIT: 'Italian description of the item...',
+  rarity: 'common' | 'uncommon' | 'rare' | 'very rare' | 'legendary',
+},
+```
 
-|---------|-------|
+---
 
-| Individual Treasure (4 fasce CR) | p. 120 |
+## 🐛 Troubleshooting
 
-| Treasure Hoard (4 fasce CR) | p. 120 |
+| Problem | Solution |
+|---------|----------|
+| "Description not available" | Add the item to `magic-items-database.ts` with the exact table key |
+| Missing translation | Verify the name matches exactly what's in the tables |
+| Theme won't update | Clear `themeMode` from localStorage |
+| Roll doesn't work | Make sure a CR tier is selected |
 
-| Arcana (Common → Legendary) | p. 326 |
+---
 
-| Armaments (Common → Legendary) | p. 328 |
+## 📜 License
 
-| Implements (Common → Legendary) | p. 329 |
+Personal project by **Noemi Marcolini** — [MIT License](./LICENSE)
 
-| Relics (Common → Legendary) | p. 330 |
+> ⚠️ **Disclaimer**: D&D, Dungeons & Dragons, and all related names are registered trademarks of Wizards of the Coast LLC. This tool is a fan-made project not affiliated with Wizards of the Coast. The tables are implementations of rules published in the official manuals for personal use by players.
 
+---
 
+<p align="center">
+  <i>Built with ❤️ by <a href="https://ko-fi.com/noemimarcolini">Noemi Marcolini</a></i>
+</p>
 
-\*\*Totale: 9 tabelle DMG 2014 + 20 tabelle DMG 2024 = 29 tabelle\*\*
-
-
-
-> 📝 Per i dettagli completi di ogni riga di ogni tabella, vedi \[DEVELOPMENT.md](./DEVELOPMENT.md)
-
-
-
-\---
-
-
-
-\## 🛠️ Tech Stack
-
-
-
-\- \*\*React 18\*\* — UI components
-
-\- \*\*Vite\*\* — Build tool con \[vite-plugin-singlefile](https://github.com/nickreese/vite-plugin-singlefile) per output singolo file
-
-\- \*\*Tailwind CSS v4\*\* — Utility-first styling
-
-\- \*\*TypeScript\*\* — Type safety
-
-\- \*\*localStorage\*\* — Persistenza preferenze e cronologia
-
-
-
-\*\*Zero dipendenze runtime esterne.\*\* Tutto il codice è bundlato in un singolo `index.html` (\~460KB).
-
-
-
-\---
-
-
-
-\## 📱 PWA
-
-
-
-L'app è installabile come PWA su mobile e desktop:
-
-\- `manifest.json` con nome, icone, tema
-
-\- Funziona offline dopo il primo caricamento (single-file)
-
-\- Safe areas per iPhone (notch/Dynamic Island)
-
-\- Standalone mode (senza barra browser)
-
-
-
-\---
-
-
-
-\## 🌐 Link Utili
-
-
-
-\- ☕ \[Supporta la creatrice su Ko-fi](https://ko-fi.com/noemimarcolini)
-
-\- ⚔️ \[Altri tool GDR e progetti](https://gdr-sys-portfolio2026.vercel.app/)
-
-
-
-\---
-
-
-
-\## 📋 Changelog
-
-
-
-\### v1.0.5 (Attuale)
-
-\- ✅ Tutte le 29 tabelle ufficiali implementate
-
-\- ✅ 400+ oggetti magici con traduzioni EN/IT
-
-\- ✅ CR raggruppati per fascia (0–4, 5–10, 11–16, 17+)
-
-\- ✅ Totale valore per gemme e oggetti d'arte
-
-\- ✅ Dark/Light/System theme
-
-\- ✅ Lookup fuzzy per oggetti (case-insensitive, normalizzazione nomi)
-
-\- ✅ Link Ko-fi e Portfolio
-
-\- ✅ Bandiere accanto alla lingua
-
-\- ✅ DEVELOPMENT.md con tutte le tabelle ufficiali complete
-
-
-
-\### v1.0.0
-
-\- Release iniziale con DMG 2014 e 2024
-
-
-
-\---
-
-
-
-\## 🤝 Contribuire
-
-
-
-1\. Leggi \[DEVELOPMENT.md](./DEVELOPMENT.md) per capire l'architettura
-
-2\. Per aggiungere un oggetto: modifica `src/data/magic-items-database.ts`
-
-3\. Per aggiungere una lingua: modifica i file in `src/i18n/`
-
-4\. Per aggiungere una tabella: modifica `src/data/tables2014.ts` o `tables2024.ts`
-
-
-
-\---
-
-
-
-\## 📜 Licenza
-
-
-
-Progetto personale di \*\*Noemi Marcolini\*\*.
-
-
-
-D\&D, Dungeons \& Dragons e tutti i nomi correlati sono marchi registrati di Wizards of the Coast LLC.
-
-Questo tool è un progetto fan-made non affiliato con Wizards of the Coast.
-
-
-
-\---
-
-
-
-\*Sviluppato con ❤️ da \[Noemi Marcolini](https://ko-fi.com/noemimarcolini)\*
-
-
-
+<p align="center">
+  <a href="https://ko-fi.com/noemimarcolini"><img src="https://img.shields.io/badge/☕_Support_the_creator-Ko--fi-FF5E5B?style=flat-square&logo=ko-fi&logoColor=white" alt="Ko-fi" /></a>
+  <a href="https://gdr-sys-portfolio2026.vercel.app/"><img src="https://img.shields.io/badge/⚔️_More_GDR_Tools-Portfolio-4F46E5?style=flat-square&logo=vercel&logoColor=white" alt="Portfolio" /></a>
+</p>
