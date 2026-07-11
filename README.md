@@ -252,57 +252,6 @@ The app is installable as a Progressive Web App:
 
 ---
 
-## 📋 Changelog
-
-### v1.0.5 *(Current)*
-- ✅ All 29 official tables implemented and verified
-- ✅ 400+ magic items with full EN/IT translations
-- ✅ CR grouped by tier (0–4, 5–10, 11–16, 17+) as per DMG
-- ✅ Auto-calculated value totals for gems and art objects
-- ✅ Dark/Light/System theme
-- ✅ Fuzzy lookup for items (case-insensitive, name normalization)
-- ✅ Ko-fi and Portfolio links in welcome screen
-- ✅ Flag icons 🇬🇧🇮🇹 next to language toggle
-- ✅ Complete DEVELOPMENT.md with all official tables row by row
-- ✅ Professional README.md
-
-### v1.0.0
-- Initial release with DMG 2014 and DMG 2024 support
-
----
-
-## 🤝 Contributing
-
-1. 📖 Read **[DEVELOPMENT.md](./DEVELOPMENT.md)** to understand the architecture and tables
-2. 🔧 To add a **magic item**: edit `src/data/magic-items-database.ts`
-3. 🌍 To add a **language**: edit the files in `src/i18n/`
-4. 📊 To fix a **table**: edit `src/data/tables2014.ts` or `tables2024.ts`
-
-### Adding a Magic Item
-```typescript
-// In src/data/magic-items-database.ts
-'Exact Name As In Table': {
-  nameEN: 'English Name',
-  nameIT: 'Italian Name',
-  descEN: 'English description of the item...',
-  descIT: 'Italian description of the item...',
-  rarity: 'common' | 'uncommon' | 'rare' | 'very rare' | 'legendary',
-},
-```
-
----
-
-## 🐛 Troubleshooting
-
-| Problem | Solution |
-|---------|----------|
-| "Description not available" | Add the item to `magic-items-database.ts` with the exact table key |
-| Missing translation | Verify the name matches exactly what's in the tables |
-| Theme won't update | Clear `themeMode` from localStorage |
-| Roll doesn't work | Make sure a CR tier is selected |
-
----
-
 ## 📜 License
 
 Personal project by **Noemi Marcolini** — [MIT License](./LICENSE)
