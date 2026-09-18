@@ -1,3 +1,5 @@
+import { magicItemsRU } from '../i18n/magic-items-ru';
+
 // Complete Magic Items Database with EN/IT translations and descriptions
 
 export interface MagicItemData {
@@ -1522,15 +1524,20 @@ export function getMagicItemData(name: string): MagicItemData | undefined {
   return findItem(name);
 }
 
-export function getItemName(name: string, lang: 'en' | 'it'): string {
+export function getItemName(name: string, lang: 'en' | 'it' | 'ru'): string {
   const data = findItem(name);
   if (!data) return name;
+  if (lang === 'ru') return magicItemsRU[data.nameEN]?.name || data.nameEN;
   return lang === 'it' ? data.nameIT : data.nameEN;
 }
 
-export function getItemDescription(name: string, lang: 'en' | 'it'): string {
+export function getItemDescription(name: string, lang: 'en' | 'it' | 'ru'): string {
   const data = findItem(name);
-  if (!data) return lang === 'it' ? 'Descrizione non disponibile.' : 'Description not available.';
+  if (!data) {
+    if (lang === 'ru') return 'Описание недоступно.';
+    return lang === 'it' ? 'Descrizione non disponibile.' : 'Description not available.';
+  }
+  if (lang === 'ru') return magicItemsRU[data.nameEN]?.description || data.descEN;
   return lang === 'it' ? (data.descIT || data.descEN) : data.descEN;
 }
 

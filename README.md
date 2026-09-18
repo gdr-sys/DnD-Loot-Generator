@@ -10,7 +10,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/D%26D-5e%20%2F%202024-E40712?style=for-the-badge&logo=dungeonsanddragons&logoColor=white" alt="D&D" />
-  <img src="https://img.shields.io/badge/lang-EN%20%7C%20IT-yellow?style=for-the-badge" alt="Languages" />
+  <img src="https://img.shields.io/badge/lang-EN%20%7C%20IT%20%7C%20RU-yellow?style=for-the-badge" alt="Languages" />
   <img src="https://img.shields.io/badge/magic_items-400%2B-purple?style=for-the-badge" alt="Items" />
   <img src="https://img.shields.io/badge/tables-29-orange?style=for-the-badge" alt="Tables" />
   <img src="https://img.shields.io/badge/build-~460KB_single_file-success?style=for-the-badge" alt="Build" />
@@ -27,7 +27,7 @@
 </p>
 
 <p align="center">
-  🌐 <b>Bilingual</b>: English 🇬🇧 &amp; Italian 🇮🇹
+  🌐 <b>Multilingual</b>: English 🇬🇧, Italian 🇮🇹 &amp; Russian 🇷🇺
 </p>
 
 <p align="center">
@@ -68,13 +68,13 @@
 - ♿ Respects `prefers-reduced-motion` for accessibility
 
 ### 🌍 Full Localization
-| Element | EN 🇬🇧 | IT 🇮🇹 |
-|---------|--------|--------|
-| UI interface | ✅ | ✅ |
-| Magic items (name + description) | ✅ | ✅ |
-| Gemstones | ✅ | ✅ |
-| Art objects | ✅ | ✅ |
-| Coin names | GP, SP, CP, EP, PP | MO, MA, MR, ME, MP |
+| Element | EN 🇬🇧 | IT 🇮🇹 | RU 🇷🇺 |
+|---------|--------|--------|--------|
+| UI interface | ✅ | ✅ | ✅ |
+| Magic items (name + description) | ✅ | ✅ | ✅ |
+| Gemstones | ✅ | ✅ | ✅ |
+| Art objects | ✅ | ✅ | ✅ |
+| Coin names | GP, SP, CP, EP, PP | MO, MA, MR, ME, MP | зм, см, мм, эм, пм |
 
 ---
 

@@ -7,15 +7,15 @@ import { getGemName, getArtName } from './i18n/translations-items';
 import type { TreasureResult, MagicItemResult } from './core/generator2014';
 
 type Screen = 'welcome' | 'generator';
-type Lang = 'en' | 'it';
+type Lang = 'en' | 'it' | 'ru';
 type ThemeMode = 'dark' | 'light' | 'system';
 
 // CR fasce raggruppate come da DMG (0-4, 5-10, 11-16, 17+)
 const CR_TIERS = [
-  { value: '0-4', label: 'CR 0–4', examples: 'Mostri deboli (Kobold, Goblin)' },
-  { value: '5-10', label: 'CR 5–10', examples: 'Avventurieri esperti (Orco, Hobgoblin, Beholder)' },
-  { value: '11-16', label: 'CR 11–16', examples: 'Eroi veterani (Gigante delle Nubi, Lich)' },
-  { value: '17+', label: 'CR 17+', examples: 'Leggende (Drago Antico, Demilich)' },
+  { value: '0-4', label: 'CR 0–4', examplesKey: 'cr.examples.0-4' },
+  { value: '5-10', label: 'CR 5–10', examplesKey: 'cr.examples.5-10' },
+  { value: '11-16', label: 'CR 11–16', examplesKey: 'cr.examples.11-16' },
+  { value: '17+', label: 'CR 17+', examplesKey: 'cr.examples.17+' },
 ];
 
 const RARITY_COLORS: Record<string, string> = {
@@ -50,7 +50,7 @@ export default function App() {
   const [screen, setScreen] = useState<Screen>('welcome');
   const [lang, setLang] = useState<Lang>(() => {
     const saved = localStorage.getItem('lang');
-    return (saved === 'it' || saved === 'en') ? saved : 'en';
+    return (saved === 'it' || saved === 'en' || saved === 'ru') ? saved : 'en';
   });
   const [themeMode, setThemeMode] = useState<ThemeMode>(() => {
     const saved = localStorage.getItem('themeMode');
@@ -81,6 +81,7 @@ export default function App() {
   // Theme management
   useEffect(() => {
     localStorage.setItem('lang', lang);
+    document.documentElement.lang = lang;
   }, [lang]);
 
   useEffect(() => {
@@ -153,7 +154,7 @@ export default function App() {
       const desc = getItemDescription(singleItem.name, lang);
       text = `${name}\n${desc}`;
     } else if (result) {
-      text = `D&D Loot (${result.edition}) - CR ${result.cr} ${result.type}\n\n`;
+      text = `D&D Loot (${result.edition}) - CR ${result.cr} ${t(`type.${result.type}`)}\n\n`;
       if (result.coins.length > 0) {
         text += t('result.coins') + ':\n';
         result.coins.forEach(c => {
@@ -248,7 +249,7 @@ export default function App() {
 
           {/* Language Toggle */}
           <div className="flex justify-center gap-3">
-            {([['en', '🇬🇧'], ['it', '🇮🇹']] as const).map(([l, flag]) => (
+            {([['en', '🇬🇧'], ['it', '🇮🇹'], ['ru', '🇷🇺']] as const).map(([l, flag]) => (
               <button
                 key={l}
                 onClick={() => setLang(l as Lang)}
@@ -315,7 +316,7 @@ export default function App() {
               rel="noopener noreferrer"
               className={`text-sm flex items-center gap-1.5 transition-colors ${isDark ? 'text-amber-400/80 hover:text-amber-300' : 'text-amber-600 hover:text-amber-500'}`}
             >
-              ☕ {lang === 'it' ? 'Supporta la creatrice' : 'Support the creator'}
+              ☕ {t('support.creator')}
             </a>
             <a
               href="https://gdr-sys-portfolio2026.vercel.app/"
@@ -323,7 +324,7 @@ export default function App() {
               rel="noopener noreferrer"
               className={`text-sm flex items-center gap-1.5 transition-colors ${isDark ? 'text-indigo-400/80 hover:text-indigo-300' : 'text-indigo-500 hover:text-indigo-400'}`}
             >
-              ⚔️ {lang === 'it' ? 'Altri tool GDR' : 'More GDR tools'}
+              ⚔️ {t('more.tools')}
             </a>
           </div>
 
@@ -375,10 +376,10 @@ export default function App() {
           <h1 className="text-sm font-bold">{t('app.title')}</h1>
           <div className="flex items-center gap-1">
             <button
-              onClick={() => setLang(lang === 'en' ? 'it' : 'en')}
+              onClick={() => setLang(lang === 'en' ? 'it' : lang === 'it' ? 'ru' : 'en')}
               className={`text-sm min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg transition-colors ${isDark ? 'hover:bg-white/10' : 'hover:bg-gray-200'}`}
             >
-              {lang === 'en' ? '🇬🇧' : '🇮🇹'} {lang.toUpperCase()}
+              {lang === 'en' ? '🇬🇧' : lang === 'it' ? '🇮🇹' : '🇷🇺'} {lang.toUpperCase()}
             </button>
             <button
               onClick={() => setThemeMode(themeMode === 'dark' ? 'light' : themeMode === 'light' ? 'system' : 'dark')}
@@ -475,7 +476,7 @@ export default function App() {
                   >
                     <div className="text-base font-bold">{tier.label}</div>
                     <div className={`text-xs mt-0.5 ${active ? (isDark ? 'text-indigo-200' : 'text-indigo-700') : (isDark ? 'text-gray-500' : 'text-gray-500')}`}>
-                      {tier.examples}
+                      {t(tier.examplesKey)}
                     </div>
                   </button>
                 );
@@ -710,7 +711,7 @@ export default function App() {
                     </span>
                   </div>
                   <div className={`text-xs ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                    {h.coins.filter(c => c.amount > 0).map(c => `${formatNumber(c.amount)} ${c.type}`).join(', ')}
+                    {h.coins.filter(c => c.amount > 0).map(c => `${formatNumber(c.amount)} ${t(c.type)}`).join(', ')}
                     {h.magicItems.length > 0 && ` + ${h.magicItems.length} ✨`}
                     {h.gems.length > 0 && ` + ${h.gems.length} 💎`}
                     {h.art.length > 0 && ` + ${h.art.length} 🎨`}
@@ -795,9 +796,9 @@ function ItemDetails({ name, lang, isDark, t }: {
           {description}
         </p>
       </div>
-      {lang === 'it' && data && (
+      {lang !== 'en' && data && (
         <div className={`text-xs italic ${isDark ? 'text-gray-600' : 'text-gray-400'}`}>
-          EN: {data.nameEN}
+          {t('item.originalEnglish')}: {data.nameEN}
         </div>
       )}
     </div>
