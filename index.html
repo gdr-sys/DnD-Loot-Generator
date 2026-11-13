@@ -1,14 +1,28 @@
 <!doctype html>
-<html lang="en">
+<html lang="it" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>D&D Loot Generator</title>
-    <meta name="description" content="D&D Loot Generator - Generate treasure for your D&D campaigns" />
-    <meta name="theme-color" content="#0d0d1a" />
+    <title>Generatore di Tesori D&amp;D</title>
+    <meta name="description" content="Genera il tesoro di un nemico o di un covo per le tue sessioni di D&amp;D. Dall'autrice di Pocket GM Screen." />
+    <meta name="theme-color" content="#1a1612" />
     <link rel="manifest" href="/manifest.json" />
+    <link rel="preload" href="/fonts/gloock.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/figtree.woff2" as="font" type="font/woff2" crossorigin />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <!-- Tema e tavolozza prima del primo disegno (dentro Pocket GM Screen arrivano dall'indirizzo) -->
+    <script>
+      (function () {
+        try {
+          var p = new URLSearchParams(location.search), d = document.documentElement;
+          var tema = p.get('tema') || localStorage.getItem('themeMode') || 'dark';
+          if (tema === 'system') tema = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          d.classList.toggle('dark', tema !== 'light');
+          if (p.get('colore')) d.setAttribute('data-colore', p.get('colore'));
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

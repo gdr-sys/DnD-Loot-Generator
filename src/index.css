@@ -1,114 +1,165 @@
 @import "tailwindcss";
 
-/* Safe area padding */
-.pt-safe {
-  padding-top: env(safe-area-inset-top, 0px);
+/* ============================================================
+   Grafica di Pocket GM Screen: tessere tonde e piatte, Gloock per
+   i titoli, Figtree per il testo. I colori nascono da due tinte
+   (--h per i fondi, --ha per l'accento) come nelle tavolozze
+   dell'app: dentro Pocket GM Screen arrivano dall'indirizzo
+   (?colore=...), da soli si usa il cuoio del marchio.
+   ============================================================ */
+
+@font-face {
+  font-family: 'Gloock';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/gloock.woff2') format('woff2');
 }
-.pb-safe {
-  padding-bottom: env(safe-area-inset-bottom, 0px);
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url('/fonts/figtree.woff2') format('woff2');
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+:root { --h: 62; --ha: 70; --k: 1.2; --ca: .13; }
+[data-colore="brace"]      { --h: 40;  --ha: 52;  --k: 1;   --ca: .17; }
+[data-colore="grafite"]    { --h: 255; --ha: 255; --k: .22; --ca: .015; }
+[data-colore="bosco"]      { --h: 155; --ha: 135; --k: 1;   --ca: .15; }
+[data-colore="cuoio"]      { --h: 62;  --ha: 70;  --k: 1.2; --ca: .13; }
+[data-colore="inchiostro"] { --h: 262; --ha: 232; --k: 1.3; --ca: .14; }
+[data-colore="vino"]       { --h: 8;   --ha: 14;  --k: 1.2; --ca: .17; }
+[data-colore="nero"]       { --h: 80;  --ha: 85;  --k: 0;   --ca: .14; }
+
+/* Giorno */
+:root {
+  --fondo: oklch(96.5% calc(.012 * var(--k)) var(--h));
+  --tessera: oklch(91.5% calc(.022 * var(--k)) var(--h));
+  --tessera-su: oklch(88.5% calc(.028 * var(--k)) var(--h));
+  --campo: oklch(99% calc(.005 * var(--k)) var(--h));
+  --filo: oklch(84% calc(.025 * var(--k)) var(--h));
+  --testo: oklch(22% calc(.03 * var(--k)) var(--h));
+  --testo-quieto: oklch(45% calc(.03 * var(--k)) var(--h));
+  --accento: oklch(50% var(--ca) var(--ha));
+  --accento-testo: oklch(44% var(--ca) var(--ha));
+  --sul-accento: #fff;
+  --oro: oklch(52% .12 80);
+  --velo: oklch(20% .02 var(--h) / .55);
+  color-scheme: light;
+}
+/* Notte */
+.dark {
+  --fondo: oklch(13% calc(.02 * var(--k)) var(--h));
+  --tessera: oklch(22% calc(.03 * var(--k)) var(--h));
+  --tessera-su: oklch(26% calc(.034 * var(--k)) var(--h));
+  --campo: oklch(17% calc(.024 * var(--k)) var(--h));
+  --filo: oklch(31% calc(.03 * var(--k)) var(--h));
+  --testo: oklch(94% calc(.02 * var(--k)) var(--h));
+  --testo-quieto: oklch(74% calc(.03 * var(--k)) var(--h));
+  --accento: oklch(74% var(--ca) var(--ha));
+  --accento-testo: oklch(80% calc(var(--ca) * .9) var(--ha));
+  --sul-accento: oklch(17% .03 var(--ha));
+  --oro: oklch(82% .12 85);
+  --velo: oklch(5% 0 0 / .65);
+  color-scheme: dark;
 }
 
-@keyframes fadeSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-@keyframes diceRoll {
-  0% { transform: rotate(0deg) scale(1); }
-  25% { transform: rotate(90deg) scale(1.2); }
-  50% { transform: rotate(180deg) scale(1); }
-  75% { transform: rotate(270deg) scale(1.2); }
-  100% { transform: rotate(360deg) scale(1); }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.3s ease;
-}
-
-.animate-fadeSlideUp {
-  animation: fadeSlideUp 0.4s ease;
-}
-
-.animate-slideUp {
-  animation: slideUp 0.3s ease;
-}
-
-.animate-diceRoll {
-  animation: diceRoll 0.6s ease infinite;
-  display: inline-block;
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .animate-fadeIn,
-  .animate-fadeSlideUp,
-  .animate-slideUp,
-  .animate-diceRoll,
-  .animate-float {
-    animation: none !important;
-  }
-}
-
-/* Scrollbar styling for dark mode */
-.dark ::-webkit-scrollbar {
-  width: 6px;
-}
-.dark ::-webkit-scrollbar-track {
-  background: transparent;
-}
-.dark ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 3px;
-}
-
-/* Tabular numbers for consistent digit width */
-.tabular-nums {
-  font-variant-numeric: tabular-nums;
-}
-
-/* Touch target minimum size */
-button {
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Base font size for mobile readability */
 html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* Prevent text size adjust on orientation change */
-html {
   -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--testo);
+  font-family: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+button { -webkit-tap-highlight-color: transparent; font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accento); outline-offset: 2px; border-radius: 10px; }
+
+.pt-safe { padding-top: env(safe-area-inset-top, 0px); }
+.pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
+.tabular-nums { font-variant-numeric: tabular-nums; }
+
+/* ── Componenti ── */
+.titolo { font-family: 'Gloock', Georgia, 'Times New Roman', serif; font-weight: 400; letter-spacing: -.01em; line-height: 1.05; }
+.etichetta { font-size: .78rem; font-weight: 600; color: var(--testo-quieto); letter-spacing: .06em; text-transform: uppercase; }
+.quieto { color: var(--testo-quieto); }
+.accento-testo { color: var(--accento-testo); }
+.oro { color: var(--oro); }
+
+.tessera { background: var(--tessera); border-radius: 22px; }
+.campo { background: var(--campo); border-radius: 14px; }
+.filo { border-color: var(--filo); }
+
+/* Tessera che si sceglie (edizione, tipo, grado di sfida, tema) */
+.scelta {
+  background: var(--tessera); border: 2px solid transparent; border-radius: 16px;
+  transition: background-color .15s ease, border-color .15s ease;
+  cursor: pointer; text-align: left;
+}
+.scelta:hover { background: var(--tessera-su); }
+.scelta[aria-pressed="true"] { border-color: var(--accento); background: var(--tessera-su); }
+
+/* Pulsanti */
+.bott {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  min-height: 48px; padding: 0 1.25rem; border-radius: 999px; border: 0;
+  font-weight: 650; cursor: pointer; transition: filter .15s ease, background-color .15s ease, transform .1s ease;
+}
+.bott:active { transform: scale(.98); }
+.bott-pieno { background: var(--accento); color: var(--sul-accento); }
+.bott-pieno:hover { filter: brightness(1.06); }
+.bott-tenue { background: var(--tessera); color: var(--testo); }
+.bott-tenue:hover { background: var(--tessera-su); }
+.bott-icona {
+  display: inline-flex; align-items: center; justify-content: center; gap: .35rem;
+  min-width: 44px; min-height: 44px; padding: 0 .6rem; border-radius: 999px; border: 0; background: transparent; cursor: pointer;
+  font-size: .82rem; font-weight: 650;
+}
+.bott-icona:hover { background: var(--tessera); }
+.bott:disabled { opacity: .55; cursor: default; }
+
+/* Rarità: colori che si leggono in entrambi i temi */
+.rar-common { --rar: oklch(50% .01 var(--h)); }
+.rar-uncommon { --rar: oklch(50% .14 150); }
+.rar-rare { --rar: oklch(50% .14 250); }
+.rar-veryrare { --rar: oklch(50% .16 305); }
+.rar-legendary { --rar: oklch(54% .15 55); }
+.dark .rar-common { --rar: oklch(80% .01 var(--h)); }
+.dark .rar-uncommon { --rar: oklch(80% .14 150); }
+.dark .rar-rare { --rar: oklch(80% .12 250); }
+.dark .rar-veryrare { --rar: oklch(80% .13 305); }
+.dark .rar-legendary { --rar: oklch(82% .13 65); }
+.rar-testo { color: var(--rar); }
+.rar-pillola { color: var(--rar); border: 1.5px solid var(--rar); border-radius: 999px; }
+.scelta.rar-scelta[aria-pressed="true"] { border-color: var(--rar); color: var(--rar); }
+
+/* Pannello dal basso */
+.velo { background: var(--velo); }
+.foglio { background: var(--campo); }
+.dark .foglio { background: oklch(19% calc(.026 * var(--k)) var(--h)); }
+
+/* Barra in alto */
+.testata { background: color-mix(in oklch, var(--fondo) 88%, transparent); border-bottom: 1px solid var(--filo); }
+
+/* Scrollbar */
+.dark ::-webkit-scrollbar { width: 6px; }
+.dark ::-webkit-scrollbar-track { background: transparent; }
+.dark ::-webkit-scrollbar-thumb { background: var(--filo); border-radius: 3px; }
+
+/* Movimento */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeSlideUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@keyframes tiro { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+.animate-fadeIn { animation: fadeIn .25s ease; }
+.animate-fadeSlideUp { animation: fadeSlideUp .35s ease; }
+.animate-slideUp { animation: slideUp .3s ease; }
+.animate-tiro { animation: tiro .7s linear infinite; display: inline-flex; }
+@media (prefers-reduced-motion: reduce) {
+  .animate-fadeIn, .animate-fadeSlideUp, .animate-slideUp, .animate-tiro { animation: none !important; }
 }

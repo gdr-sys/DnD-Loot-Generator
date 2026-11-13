@@ -1,10 +1,10 @@
 {
-  "name": "D&D Loot Generator",
-  "short_name": "Loot Gen",
-  "description": "Generate treasure for your D&D campaigns",
+  "name": "Generatore di Tesori D&D",
+  "short_name": "Tesori",
+  "description": "Genera il tesoro di un nemico o di un covo per D&D.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0d0d1a",
-  "theme_color": "#0d0d1a",
+  "background_color": "#1a1612",
+  "theme_color": "#1a1612",
   "icons": []
 }
