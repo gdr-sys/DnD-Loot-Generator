@@ -232,7 +232,7 @@ export default function App() {
           </button>
 
           <div className="flex flex-wrap justify-between gap-3 text-sm">
-            <a href="https://gdr-sys.github.io/dm-toolkit/" target="_blank" rel="noopener noreferrer" className="accento-testo font-semibold">
+            <a href="https://pocketgmscreen.pages.dev/" target="_blank" rel="noopener noreferrer" className="accento-testo font-semibold">
               {lang === 'it' ? 'Prova Pocket GM Screen' : 'Try Pocket GM Screen'}
             </a>
             <a href="https://ko-fi.com/noemimarcolini" target="_blank" rel="noopener noreferrer" className="quieto">
